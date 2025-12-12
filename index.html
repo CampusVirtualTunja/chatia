@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente Campus Virtual Santoto Tunja con IA</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <img class="robot" src="img/robot.png" alt="">
+        <div class="chat-header">
+            <h1><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-graduation-cap-icon lucide-graduation-cap"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg> Asistente Virtual IA - Campus Virtual Santoto Tunja</h1>
+            <p>Asistente inteligente con información del Campus Virtual</p>
+            <img src="img/Logo_Blanco2.png" alt="" class="logo">
+        </div>
+
+
+
+        <div class="quick-questions">
+            <button class="quick-btn" onclick="sendQuickQuestion('¿Cómo ingreso al Campus Virtual?')"> <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-key-round-icon lucide-key-round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></svg> Ingreso Campus</button>
+            <button class="quick-btn" onclick="sendQuickQuestion('¿Cómo subo una tarea?')"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-plus-icon lucide-mail-plus"><path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/><path d="M19 16v6"/><path d="M16 19h6"/></svg> Subir tarea</button>
+            <button class="quick-btn" onclick="sendQuickQuestion('¿Cómo veo mis calificaciones en Campus Virtual?')"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-column-icon lucide-chart-column"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg> Ver notas</button>
+            <button class="quick-btn" onclick="sendQuickQuestion('¿Cómo contactar soporte?')"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-icon lucide-wrench"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></svg> Soporte</button>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="message-content">
+                    ¡Hola! Soy tu asistente virtual con IA de la Universidad Santo Tomás Tunja. 
+                    <br><br>
+                    He sido entrenado con información específica sobre:
+                    <br><br>
+                    • Campus Virtual Santoto Tunja<br>
+                    • Procedimientos académicos paso a paso<br>
+                    • Información institucional<br>
+                    • Soporte técnico<br>
+                    <br>
+                    ¿En qué puedo ayudarte hoy?
+                </div>
+            </div>
+            <div class="typing-indicator" id="typingIndicator">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div class="chat-input-container">
+            <input type="text" class="chat-input" id="userInput" onkeydown="handleKey(event)" placeholder="Escribe tu pregunta aquí..." onkeypress="handleKeyPress(event)">
+            <button class="send-button" id="sendButton" onclick="sendMessage()">Enviar</button>
+        </div>
+        <span style="color: rgb(198, 198, 198); margin: 0 auto; margin-bottom: 10px;">By Campus Virtual - Ing Juan Malaver</span>
+         <span style="color: rgb(215, 215, 215); margin: 0 auto; margin-bottom: 10px;">2025</span>
+    </div>
+
+<script>
+  setTimeout(() => {
+    const s = document.createElement('script');
+    s.src = atob('ZnVuY2lvbmVzL21haW4uanM=');
+    document.body.appendChild(s);
+  }, 500);
+</script>
+
+</body>
+</html>
