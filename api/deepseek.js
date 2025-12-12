@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
-    // CORS
+    // CORS COMPLETO (preflight)
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
     if (req.method === "OPTIONS") {
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     }
 
     try {
-        const response = await fetch("https://api.deepseek.com/v1/chat/completions", {
+        const result = await fetch("https://api.deepseek.com/v1/chat/completions", {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${process.env.DEEPSEEK_API_KEY}`,
@@ -22,10 +22,10 @@ export default async function handler(req, res) {
             body: JSON.stringify(req.body)
         });
 
-        const data = await response.json();
-        res.status(response.status).json(data);
-        
-    } catch (error) {
-        res.status(500).json({ error: "Error interno del servidor" });
+        const data = await result.json();
+        return res.status(result.status).json(data);
+
+    } catch (err) {
+        return res.status(500).json({ error: "Error interno del servidor" });
     }
 }
