@@ -220,7 +220,7 @@ async function getClaudeResponse() {
 // ========== DEEPSEEK ==========
 async function getDeepSeekResponse() {
   try {
-    const response = await fetch('https://tu-proyecto.vercel.app/api/deepseek', {
+    const response = await fetch('https://chatia-two.vercel.app/api/deepseek', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
