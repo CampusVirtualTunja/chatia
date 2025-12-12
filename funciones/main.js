@@ -219,36 +219,49 @@ async function getClaudeResponse() {
 
 // ========== DEEPSEEK ==========
 async function getDeepSeekResponse() {
-  const response = await fetch('https://chatia-git-main-campus-virtuals-projects.vercel.app/api/deepseek', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      model: 'deepseek-chat',
-      messages: [
-        { role: 'system', content: TRAINING_CONTEXT },
-        ...conversationHistory
-      ],
-      temperature: 0.5,
-      max_tokens: 1000
-    })
-  });
+  try {
+    const response = await fetch('https://tu-proyecto.vercel.app/api/deepseek', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: 'deepseek-chat',
+        messages: [
+          { role: 'system', content: TRAINING_CONTEXT },
+          ...conversationHistory
+        ],
+        temperature: 0.5,
+        max_tokens: 1000
+      })
+    });
 
-  if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.error?.message || 'Error en la API de DeepSeek');
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Error response:', errorText);
+      throw new Error(`Error ${response.status}: ${errorText}`);
+    }
+
+    const data = await response.json();
+    
+    // Validar que la respuesta tenga la estructura esperada
+    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+      throw new Error('Respuesta inválida de la API');
+    }
+    
+    const assistantMessage = data.choices[0].message.content;
+
+    conversationHistory.push({
+      role: 'assistant',
+      content: assistantMessage
+    });
+
+    return assistantMessage;
+    
+  } catch (error) {
+    console.error('Error detallado:', error);
+    throw new Error(`Error de conexión: ${error.message}`);
   }
-
-  const data = await response.json();
-  const assistantMessage = data.choices[0].message.content;
-
-  conversationHistory.push({
-    role: 'assistant',
-    content: assistantMessage
-  });
-
-  return assistantMessage;
 }
 
 
