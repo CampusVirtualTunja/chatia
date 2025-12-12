@@ -1,6 +1,3 @@
-// Archivo: api/deepseek.js
-// Este archivo debe estar en la carpeta /api/ de tu proyecto Vercel
-
 export default async function handler(req, res) {
   // Configurar CORS
   res.setHeader('Access-Control-Allow-Credentials', true);
